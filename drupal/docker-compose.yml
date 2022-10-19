@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+    drupal:
+        image: drupal:latest
+        container_name: drupal
+        network_mode: drupal
+        ports:
+            - '7885:80'
+        volumes:
+            - /var/www/html/modules
+            - /var/www/html/profiles
+            - /var/www/html/themes
+            - /var/www/html/sites
+        restart: always
+    # If you want to use postgres uncomment this and follow steps in readme.md
+    # postgres:
+    #     container_name: postgres
+    #     network_mode: drupal
+    #     environment:
+    #         - POSTGRES_DB=drupal
+    #         - POSTGRES_USER=user
+    #         - POSTGRES_PASSWORD=pass
+    #     image: 'postgres:11'

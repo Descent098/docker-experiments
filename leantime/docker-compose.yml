@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+    mysql:
+        restart: unless-stopped
+        ports:
+            - '3306:3306'
+        network_mode: leantime-net
+        environment:
+            - MYSQL_ROOT_PASSWORD=321.qwerty
+            - MYSQL_DATABASE=leantime
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=321.qwerty
+        container_name: mysql_leantime
+        image: 'mysql:8.0'
+    leantime:
+        restart: unless-stopped
+        ports:
+            - '5050:80'
+        network_mode: leantime-net
+        environment:
+            - LEAN_DB_HOST=mysql_leantime
+            - LEAN_DB_USER=admin
+            - LEAN_DB_PASSWORD=321.qwerty
+            - LEAN_DB_DATABASE=leantime
+        container_name: leantime
+        image: 'leantime/leantime:latest'
