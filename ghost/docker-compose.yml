@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+    ghost:
+        container_name: ghost
+        environment:
+            - NODE_ENV=development
+            - 'url=http://localhost:3001'
+        ports:
+            - '3001:2368'
+        image: ghost
